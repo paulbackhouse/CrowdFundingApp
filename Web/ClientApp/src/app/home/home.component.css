@@ -1,0 +1,23 @@
+
+
+.investment-item {
+  float:left;
+  width:49.5%;
+  margin:.75em;
+  padding:.5em .75em;
+  border:solid 1px #EFEFEF;
+}
+
+.investment-item:nth-child(even) {
+  float:right;
+}
+
+.investment-item, h3 {
+  margin:.25em 0;
+  font-size:1.4em;
+}
+
+.investment-item, .text-description {
+  font-size:small;
+}
+

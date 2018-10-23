@@ -23,7 +23,7 @@ namespace Web.Data
             // TODO: DATA: SEED: Products > update to real investment products
             if (!context.Product.Any())
             {
-                var text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis aliquam augue, ut porttitor massa aliquam non. Aenean sed sodales risus, ut congue velit. Aliquam vehicula lorem vel erat aliquet, at viverra dui varius.";
+                var text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis aliquam augue, ut porttitor massa aliquam non. Aenean sed sodales risus, ut congue velit.";
 
                 for (var i = 1; i < 11; i++)
                 {

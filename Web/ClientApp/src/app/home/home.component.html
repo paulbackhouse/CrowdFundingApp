@@ -7,27 +7,28 @@
 </p>
 <p>
   Functionality is mostly in a mock state including an in-memory DB instance.  It is expected that this POC would evolve to include the following:
+  <em>N-layered Solution Design, Data Access Logic (repositories, MongoDb or relationational DB context, Business Service Logic, User Authentication Logic (registration, login etc...), Unit Tests.</em>
 </p>
-<ul>
-  <li>N-layered Solution Design;</li>
-  <li>Data Access Logic (repositories, MongoDb or relationational DB context;</li>
-  <li>Business Service Logic;</li>
-  <li>User Authentication Logic (registration, login etc...);</li>
-  <li>Unit Tests.</li>
-</ul>
-
 <p>
   <strong>Note</strong><br />
   A session is created for the current active user and is maintained while active in this example;
   Persistent user investment logic is currently not implemented and should be added going forward based on requirements, closing this window and returning generates a new unique Id value.
 </p>
 
+<p>
+  <strong>Your current Unique Id: {{ Id }}</strong>
+</p>
 <hr />
 
 <h2>Investment Items</h2>
 
-<p>
-  Your current Unique Id: {{ Id }}
-</p>
+<div *ngFor="let product of products"
+     class="investment-item"
+     >
+    <!-- I N V E S T M E N T   I T E M -->
+
+  <h3>{{ product.name }}</h3>
+  <p class="text-description">{{ product.description }}</p>
+</div>
 
 

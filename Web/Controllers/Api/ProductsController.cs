@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers.Api
 {
@@ -12,7 +9,7 @@ namespace Web.Controllers.Api
 
     public class ProductsController : ApiController
     {
-
+        // TODO: BUSINESS LOGIC: create 'ProductService.cs IProductServive' should return a cached instance of products
         private readonly IProductRepository productRepository;
 
         public ProductsController(IProductRepository productRepository)
@@ -22,7 +19,7 @@ namespace Web.Controllers.Api
 
 
         [HttpGet]
-        // TODO: API: should return a DTO, not direct entities
+        // TODO: BUSINESS LOGIC: ProductService should return a cached instance of the product, should return a DTO, not direct 'ProductEntity'
         public async Task<IEnumerable<ProductEntity>> Get()
             => await productRepository.Get();
 
