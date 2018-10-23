@@ -100,6 +100,7 @@ namespace Web
         private void SetServices(IServiceCollection services)
         {
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IInvestmentLedgerRepository, InvestmentLedgerRepository>();
         }
 
     }

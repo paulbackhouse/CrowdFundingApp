@@ -1,23 +1,60 @@
 
+#investments {
+  clear:left;
+  float:left;
+  padding-bottom:1em;
+}
 
 .investment-item {
-  float:left;
-  width:49.5%;
-  margin:.75em;
-  padding:.5em .75em;
-  border:solid 1px #EFEFEF;
+  float: left;
+  width: 49.5%;
+  margin: .75em;
+  padding: .5em .75em;
+  border: solid 1px #EFEFEF;
+  background: #F6F3F3;
 }
 
 .investment-item:nth-child(even) {
-  float:right;
+  float: right;
 }
 
 .investment-item, h3 {
-  margin:.25em 0;
-  font-size:1.4em;
+  margin: .25em 0;
+  font-size: 1.4em;
 }
 
-.investment-item, .text-description {
-  font-size:small;
+.investment-item hr {
+  border-color: #FFF;
+}
+
+.investment-item .text-description {
+  font-size: small;
+}
+
+.investment-item .investment-container {
+  width:100%;
+}
+
+.investment-item .investment-status {
+  float: left;
+  width: 49.5%;
+  color: #999;
+  font-size: .8em;
+}
+
+.investment-item .invest {
+  float: right;
+  width: 49.5%;
+  margin-top:-2px;
+  text-align:right;
+}
+
+.investment-item .invest input[type=number] {
+  width:100px;
+  display:inline-block;
+}
+
+.investment-item .invest input[type=button] {
+  padding:5px 10px;
 }
 

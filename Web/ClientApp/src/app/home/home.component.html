@@ -4,31 +4,52 @@
 
 <p>
   Welcome to the Crowd Funding opportunity example. This is a Proof Of Concept (POC) demonstrating how a crowd funding application could function.
-</p>
-<p>
+  <br />
   Functionality is mostly in a mock state including an in-memory DB instance.  It is expected that this POC would evolve to include the following:
   <em>N-layered Solution Design, Data Access Logic (repositories, MongoDb or relationational DB context, Business Service Logic, User Authentication Logic (registration, login etc...), Unit Tests.</em>
 </p>
 <p>
-  <strong>Note</strong><br />
+  <strong>Current Unique Id: {{ UserId }}</strong><br />
   A session is created for the current active user and is maintained while active in this example;
   Persistent user investment logic is currently not implemented and should be added going forward based on requirements, closing this window and returning generates a new unique Id value.
 </p>
 
-<p>
-  <strong>Your current Unique Id: {{ Id }}</strong>
-</p>
 <hr />
 
 <h2>Investment Items</h2>
 
-<div *ngFor="let product of products"
-     class="investment-item"
-     >
+<div id="investments">
+
+  <div *ngFor="let product of products" class="investment-item">
     <!-- I N V E S T M E N T   I T E M -->
 
-  <h3>{{ product.name }}</h3>
-  <p class="text-description">{{ product.description }}</p>
+    <h3>{{ product.name }}</h3>
+    <div class="text-description">{{ product.description }}</div>
+
+    <hr />
+    <div class="investment-container">
+
+      <div class="investment-status">
+        {{ product.investmentAmount | currency: 'EUR' }} / {{ product.investmentRequired | currency: 'EUR' }}
+      </div>
+
+      <div class="invest">
+
+        <div [hidden]="product.invested !== undefined">
+          <form #f="ngForm" (ngSubmit)="invest(f, product)" novalidate>
+            <span>&euro;</span>
+            <input type="number" name="amount" required ngModel class="form-control form-control-sm" maxlength="5" min="100" max="10000" step="100" onkeydown="javascript: return event.keyCode == 69 ? false : true;" />
+            <input type="submit" class="btn btn-sm btn-primary " value="Invest &raquo;" />
+          </form>
+        </div>
+
+        <span [hidden]="!product.invested > 0">
+          You invested: {{ product.invested | currency: 'EUR' }}
+        </span>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 

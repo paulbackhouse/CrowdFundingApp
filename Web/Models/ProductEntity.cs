@@ -27,5 +27,6 @@ namespace Web.Models
         /// </summary>
         // TODO: DATA: this should be set in business logic and not on the entity
         public bool InvestmentComplete => InvestmentAmount == InvestmentRequired;
+
     }
 }
