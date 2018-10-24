@@ -1,5 +1,5 @@
 # CrowdFundingApp
-A basic crown funding app demonstrating as a POC.
+A basic crown funding app demonstrating basic functionality as a POC.
 
 <h2>Prerequisites</h2>
 <ul>
