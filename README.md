@@ -16,6 +16,7 @@ Download and open the solution, restore Nuget packages and npm packages respecti
   <h3>Visual Studio Task List</h3>
   Using the <strong>Task List</strong> window, comments are displayed showing what code needs updating if the POC were to move forward into  a live project. To view the Task List window, <em>Menu > View > Task List</em>
 
+<h3>Functionality</h3>
   Functionality is mostly in a mock state including an in-memory DB instance.  It is expected that this POC would evolve to include the following:
   <ul>
   <li>N-layered Solution Design;</li>
