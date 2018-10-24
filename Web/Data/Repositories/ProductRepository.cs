@@ -19,7 +19,6 @@ namespace Web.Data.Repositories
             return await context.Product.ToListAsync();
         }
 
-        // TODO: PAGING: add
         public async Task<ProductEntity> Get(int id)
         {
             return await context.Product.FirstOrDefaultAsync(f => f.Id == id);
