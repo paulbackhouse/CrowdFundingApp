@@ -13,7 +13,7 @@ namespace Web.Data.Repositories
             : base(ctx)
         { }
 
-        // TODO: PAGING: add
+        // TODO: CACHE: PAGING: add
         public async Task<IEnumerable<ProductEntity>> Get()
         {
             return await context.Product.ToListAsync();
@@ -25,7 +25,7 @@ namespace Web.Data.Repositories
             return await context.Product.FirstOrDefaultAsync(f => f.Id == id);
         }
 
-        // TODO: REPO: consider Upsert logic later
+        // TODO: DATA: consider Upsert logic
         public void Save(ProductEntity entity)
         {
             entity.Updated = DateTime.UtcNow;

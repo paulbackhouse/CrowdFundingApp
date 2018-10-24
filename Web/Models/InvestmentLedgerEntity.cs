@@ -7,7 +7,7 @@ namespace Web.Models
     {
 
         [Key]
-        // TODO: DATA: Change to correct type as User auth and management is added
+        // HACK: Change to correct type as User auth and management is added
         public Guid UserId { get; set; }
 
         [Key]

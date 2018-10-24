@@ -2,29 +2,13 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Guid } from "guid-typescript";
-import { Observable } from 'rxjs/Observable';
 
+//TODO: JS: place as global setting
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
 };
-
-interface IProduct {
-  id: number,
-  name: string,
-  description: string,
-  investmentRequired: number,
-  investmentAmount: number,
-  investmentComplete: boolean,
-  invested: number // TODO: JS: LOGIC: change to indicate what a user has invested on a product
-}
-
-interface IInvestment {
-  productId: number,
-  userId: Guid,
-  amount: number
-}
 
 @Component({
   selector: 'app-home',
@@ -56,20 +40,16 @@ export class HomeComponent {
 
     let amount = f.value.amount;
 
-    if (amount < 100 || amount > 10000) {
-    // TODO: JS: VALIDATION: add validation, better UI message logic - i.e. check what is left on investmen etc.. can't "over" invest
-      alert("Investment amount must be between 100 and 10000");
-      return;
+    if (this.isValid(product, amount))
+    {
+      this.addInvestment({ productId: product.id, userId: this.UserId.value, amount: amount })
+        .subscribe(result => {
+          // HACK: refresh the product entity in a better way
+          product.investmentAmount = result.investmentAmount;
+          product.investmentComplete = result.investmentComplete;
+          product.invested = amount;
+        }, error => console.error(error));
     }
-
-    this.addInvestment({ productId: product.id, userId: this.UserId.value, amount: amount })
-      .subscribe(result => {
-        // TODO: JS: LOGIC: refresh the product entity in a better way
-        product.investmentAmount = result.investmentAmount;
-        product.investmentComplete = result.investmentComplete;
-        product.invested = amount;
-      }, error => console.error(error));
-
   }
 
   // p r i v a t e
@@ -77,14 +57,53 @@ export class HomeComponent {
   addInvestment(model: IInvestment) {
     return this.http.post(this.baseUrl + 'api/ledger', model, httpOptions);
   }
-  
-  getProducts()
-  {
+
+  getProducts() {
     this.http.get(this.baseUrl + 'api/products').subscribe(result => {
       this.products = result as IProduct[];
-      
+
     }, error => console.error(error));
   }
 
+  isValid(product: IProduct, amount: number): boolean {
 
+    // HACK: VALIDATION: purely for POC, add better validation
+
+    let investmentOutstanding = product.investmentRequired - product.investmentAmount;
+
+    if (amount > investmentOutstanding) {
+      // HACK: add better UI alerting
+      alert("The amount you want to invest exceeds the outstanding investment amount required of €" + investmentOutstanding);
+      return false;
+    }
+
+    if (amount < 100 || amount > 10000) {
+      // HACK: add better UI alerting
+      alert("Investment amount must be between 100 and 10000");
+      return false;
+    }
+
+
+    return true;
+  }
+
+}
+
+// i n t e r f a c e s
+
+interface IProduct {
+  id: number,
+  name: string,
+  description: string,
+  investmentRequired: number,
+  investmentAmount: number,
+  investmentComplete: boolean,
+  // HACK: JS: LOGIC: purely for mock, replace with better logic > what investments has a user made?
+  invested: number
+}
+
+interface IInvestment {
+  productId: number,
+  userId: Guid,
+  amount: number
 }
