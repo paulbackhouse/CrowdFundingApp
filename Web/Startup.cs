@@ -40,6 +40,7 @@ namespace Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            // TODO: add logging implementation (i.e. log4net)
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -88,6 +89,7 @@ namespace Web
 
         private IServiceProvider AddDatabase(IServiceCollection services)
         {
+            // TODO: DATA: CONTEXT: replace with final implementation (NoSql / M(x) SQL EF)
             services.AddDbContext<CrowdFundingContext>(options => options.UseInMemoryDatabase("CrowdFundingDatabaseContext"));
 
             var serviceProvider = services.BuildServiceProvider();
@@ -99,6 +101,7 @@ namespace Web
 
         private void SetServices(IServiceCollection services)
         {
+            // TODO: IOC: move to module specific loading
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IInvestmentLedgerRepository, InvestmentLedgerRepository>();
         }
