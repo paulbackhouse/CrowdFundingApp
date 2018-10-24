@@ -6,13 +6,19 @@
   Welcome to the Crowd Funding opportunity example. This is a Proof Of Concept (POC) demonstrating how a crowd funding application could function.
   <br />
   Functionality is mostly in a mock state including an in-memory DB instance.  It is expected that this POC would evolve to include the following:
-  <em>N-layered Solution Design, Data Access Logic (repositories, MongoDb or relationational DB context, Business Service Logic, User Authentication Logic (registration, login etc...), Unit Tests.</em>
+  <em>N-layered Solution Design, Data Access Logic (repositories, MongoDb or relationational DB context), Business Service Logic, User Authentication Logic (registration, login etc...), Unit Tests.</em>
 </p>
-<p>
-  <strong>Current Unique Id: {{ UserId }}</strong><br />
-  A session is created for the current active user and is maintained while active in this example;
-  Persistent user investment logic is currently not implemented and should be added going forward based on requirements, closing this window and returning generates a new unique Id value.
-</p>
+  <h2>User Session</h2>
+  <p>
+    A unique Id is created for each page request to represent an <b>active user</b>;
+    Persistent user investment logic is not implemented and should be added going forward based on requirements.
+    <br /><br />
+    <strong>
+      Closing/refreshing the app window generates a new unique Id value.
+      <br/><br />
+      Current unique Id: {{ UserId }}
+    </strong>
+  </p>
 
 <hr />
 
@@ -33,9 +39,7 @@
         {{ product.investmentAmount | currency: 'EUR' }} / {{ product.investmentRequired | currency: 'EUR' }}
       </div>
 
-      <div class="invest">
-
-        <div [hidden]="product.invested !== undefined">
+        <div class="invest invest-form" [hidden]="product.invested !== undefined">
           <form #f="ngForm" (ngSubmit)="invest(f, product)" novalidate>
             <span>&euro;</span>
             <input type="number" name="amount" required ngModel class="form-control form-control-sm" maxlength="5" min="100" max="10000" step="100" onkeydown="javascript: return event.keyCode == 69 ? false : true;" />
@@ -43,13 +47,12 @@
           </form>
         </div>
 
-        <span [hidden]="!product.invested > 0">
+        <div class="invest invested-text" [hidden]="!product.invested > 0">
           You invested: {{ product.invested | currency: 'EUR' }}
-        </span>
-      </div>
+        </div>
+
     </div>
   </div>
-
 </div>
 
 

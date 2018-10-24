@@ -33,6 +33,7 @@
 
 .investment-item .investment-container {
   width:100%;
+  min-height:30px;
 }
 
 .investment-item .investment-status {
@@ -45,8 +46,11 @@
 .investment-item .invest {
   float: right;
   width: 49.5%;
-  margin-top:-2px;
+}
+
+.investment-item .invest-form {
   text-align:right;
+  margin-top:-6px;
 }
 
 .investment-item .invest input[type=number] {
@@ -57,4 +61,11 @@
 .investment-item .invest input[type=button] {
   padding:5px 10px;
 }
+
+.investment-item .invested-text {
+  font-size: .8em;
+  text-align:right;
+}
+
+
 
